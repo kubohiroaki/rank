@@ -1,0 +1,50 @@
+<div class="top container">
+　<%= render partial: 'movies/search' %>
+  <h1>タイトル：<%= @movie.title %></h1>
+  <% if @movie.fiction %>
+  <div>フィクション：フィクション</div>
+  <% else %>
+  <div>フィクション：ノンフィクション</div>
+  <% end %>
+  <div>カテゴリー：<%= @movie.category.name %></div>
+  <div class="image_wrap">
+    <%= image_tag image_url(@movie) %>
+    <img src="<%= @movie.image2 %>">
+    <img src="<%= @movie.image3 %>">
+  </div>
+  <ul class="posts">
+    <li>
+          <span class="caption">総合評価：<%= @movie.emotion_point %>点</span>
+          <div><%= @movie.emotion_comment %></div>
+    </li>
+    <li>
+          <span class="caption">ストーリー：<%= @movie.story_point %>点</span>
+          <div><%= @movie.story_comment %></div>
+    </li>
+    <li>
+          <span class="caption">映像：<%= @movie.graphic_point %>点</span>
+          <div><%= @movie.graphic_comment %></div>
+    </li>
+    <li>
+          <span class="caption">笑い：<%= @movie.comedy_point %>点</span>
+          <div><%= @movie.comedy_comment %></div>
+    </li>
+    <li>
+          <span class="caption">興奮度：<%= @movie.excite_point %>点</span>
+          <div><%= @movie.excite_comment %></div>
+    </li>
+    <li>
+          <span class="caption">感動：<%= @movie.emotion_point %>点</span>
+          <div><%= @movie.emotion_comment %></div>
+    </li>
+  </ul>
+
+  <%= link_to edit_movie_path(@movie.id) do %>
+  <div>編集する</div>
+  <% end %>
+  <%= link_to movie_path, method: :delete do %>
+  <div>削除する</div>
+  <% end %>
+</div>
+  
+

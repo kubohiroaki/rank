@@ -1,0 +1,19 @@
+<div class="sign_in">
+  <div class="contents">
+    <div class="sign_in_form">
+      <h1>ランキングサイト</h1>
+      <%= form_tag("/sign_in", method: :post) do %>
+        <div class="field">
+          <%= email_field_tag :email, nil, placeholder: "メールアドレス" %>
+        </div>
+        <div class="field">
+          <%= password_field_tag :password, nil, placeholder: "パスワード" %>
+        </div>
+        <button>サインインする</button>
+      <% end %>
+    </div>
+    <div class="sign_in_link">
+      <p>アカウントをお持ちですか？<%= link_to sign_up_path do %>新規登録<% end %></p>
+    </div>
+  </div>
+</div>

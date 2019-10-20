@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="new_post_wrap">
+    <h1>新規投稿</h1>
+    <%= form_for @movie do |f| %>
+      <!-- 説明文 -->
+      <div class="textarea_wrap">
+        <%= f.text_area :title, placeholder: "タイトル" %>
+      </div>
+      <!-- ファイル選択ボタン -->
+      <div class="file_wrap">
+        <%= f.file_field :image1 %>
+      </div>
+      <div class="file_wrap">
+        <%= f.file_field :image2 %>
+      </div>
+      <div class="file_wrap">
+        <%= f.file_field :image3 %>
+      </div>
+      <div class="textarea_wrap">
+        <%= f.text_field :story_point, placeholder: "ストーリー" %>
+        <%= f.text_field :graphic_point, placeholder: "映像" %>
+        <%= f.text_field :comedy_point , placeholder: "笑い" %>
+        <%= f.text_field :excite_point, placeholder: "興奮度" %>
+        <%= f.text_field :emotion_point, placeholder: "感動" %>
+      </div>
+
+      <div class="textarea_wrap">
+        <%= f.text_area :story_comment, placeholder: "ストーリー" %>
+      </div>
+      <div class="textarea_wrap">
+        <%= f.text_area :graphic_comment, placeholder: "映像" %>
+      </div>
+      <div class="textarea_wrap">
+        <%= f.text_area :comedy_comment , placeholder: "笑い" %>
+      </div>
+      <div class="textarea_wrap">
+        <%= f.text_area :excite_comment, placeholder: "興奮度" %>
+      </div>
+      <div class="textarea_wrap">
+        <%= f.text_area :emotion_comment, placeholder: "感動" %>
+      </div>
+      <div class="textarea_wrap">
+        <%= f.text_area :description, placeholder: "説明文" %>
+      </div>
+      <div class="textarea_wrap">
+       <%= f.collection_select :category_id, Category.all, :id,:name %>
+      </div>
+      <div class="textarea_wrap">
+        <%= f.select :fiction, options_for_select([['フィクション','true'],['ノンフィクション', 'false']]) %>
+      </div>
+      <!-- 送信ボタン -->
+      <div class="btn_wrap">
+        <%= f.submit "送信" %>
+      </div>
+    <% end %>
+  </div>
+</div>

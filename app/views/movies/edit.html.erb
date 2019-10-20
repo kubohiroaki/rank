@@ -1,0 +1,86 @@
+<div class="profile_edit container">
+  <%= render partial: 'movies/search' %>
+  <h1>映画更新ページ</h1>
+  <%= form_for @movie, url: movie_path, method: 'patch' do |f| %>
+    <div class="field">
+    <div class="field">
+      <label>画像1</label>
+      <div class="file_wrap">
+        <%= f.file_field :image1 %>
+      </div>
+    </div>
+    <div class="field">
+      <label>画像2</label>
+      <div class="file_wrap">
+        <%= f.file_field :image2 %>
+      </div>
+    </div>
+    <div class="field">
+      <label>画像3</label>
+      <div class="file_wrap">
+        <%= f.file_field :image3 %>
+      </div>
+    </div>
+
+      <div class="file_wrap">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title %>
+      </div>
+    <div class="field">
+      <%= f.label :category, "カテゴリー" %>
+      <%= f.collection_select :category_id, Category.all, :id,:name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :story_point, "ストーリー" %>
+      <%= f.text_field :story_point, placeholder: "点数を入力して下さい。" %>
+    </div>
+    <div class="">
+      <%= f.label :story_comment, "評価" %>
+      <%= f.text_field :story_comment, placeholder: "評価を入力して下さい。" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :graphic_point, "映像" %>
+      <%= f.text_field :graphic_point, placeholder: "点数を入力して下さい。" %>
+    </div>
+    <div class="">
+      <%= f.label :graphic_comment, "評価" %>
+      <%= f.text_field :graphic_comment, placeholder: "評価を入力して下さい。" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :comedy_point, "笑い" %>
+      <%= f.text_field :comedy_point, placeholder: "点数を入力して下さい。" %>
+    </div>
+    <div class="">
+      <%= f.label :comedy_comment, "評価" %>
+      <%= f.text_field :comedy_comment, placeholder: "評価を入力して下さい。" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :excite_point, "興奮度" %>
+      <%= f.text_field :excite_point, placeholder: "点数を入力して下さい。" %>
+    </div>
+    <div class="">
+      <%= f.label :excite_comment, "評価" %>
+      <%= f.text_field :excite_comment, placeholder: "評価を入力して下さい。" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :emotion_point, "感動" %>
+      <%= f.text_field :emotion_point, placeholder: "点数を入力して下さい。" %>
+    </div>
+    <div class="">
+      <%= f.label :emotion_comment, "評価" %>
+      <%= f.text_field :emotion_comment, placeholder: "評価を入力して下さい。" %>
+    </div>
+
+    
+    
+    
+    <div class="button_wrap">
+      <input type="submit" value="保存する" class="button">
+    </div>
+  <% end %>
+</div>

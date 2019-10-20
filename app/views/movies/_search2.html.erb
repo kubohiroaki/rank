@@ -1,0 +1,33 @@
+<div class="search">
+    <%= form_tag("/search_result", method: :get) do %>
+        <h1>サンプル</h1>
+        <div>カテゴリー検索</div>
+        <%= select_tag :category_id, options_for_select(Category.pluck(:name, :id), params[:category_id]), include_blank: true %>
+
+        
+        <div>評価項目</div>
+        <ul style="list-style:none;">
+            <li><%= check_box "evaluation", "story", {} %>ストーリー(独創性)</li>
+            <li><%= check_box "evaluation", "graphic", {} %>演出(映像/音楽)</li>
+            <li><%= check_box "evaluation", "comedy", {} %>笑い</li>
+            <li><%= check_box "evaluation", "excite", {} %>興奮度(驚き)</li>
+            <li><%= check_box "evaluation", "emotion", {} %>感動</li>
+    　  </ul>
+    　  
+        <div>並び替え</div>
+        <div class="">
+            <%= select_tag :align, options_for_select([['評価の高い順','desc'],['評価の低い順','asc']]) %>
+        </div>
+        
+        <div>フィクション</div>
+         <%= select_tag :fiction, options_for_select([['フィクション','true'],['ノンフィクション','false']]), include_blank: true %>
+
+        
+
+        
+        <div class="btn_wrap">
+            <%= submit_tag "送信" %>
+        </div>
+    <% end %>
+</div> 
+</div>

@@ -1,0 +1,49 @@
+// Place all the styles related to the movies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+ul.title {
+    list-style: none;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+}
+ul.title li {
+    border: 1px solid red;
+    width: 18%;
+    margin-bottom:15px;
+}
+
+ul.title li a div img {
+    width:100%;
+}
+
+.search {
+    background-color: palegoldenrod;
+    padding: 5px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+
+.search_mix {
+    float: right;
+    width: 30%;
+}
+
+.big_title {
+  font-size:55px;
+  text-align: center;
+}
+
+.rank_top {
+    float: left;
+    width: 67%;
+}
+
+
+.clearfix:after{
+	content: "";
+	clear: both;
+	display: block;
+}

@@ -1,0 +1,133 @@
+
+<h1 class="big_title">映画ランキング</h1>
+    <%= render partial: 'movies/search' %>
+    <%= render partial: 'movies/search2' %>
+<div class="rank_top">
+
+<section class="smoll_title">
+
+<h2>総合得点別ランキング</h2>
+<%= form_tag("/movies/next", method: :post) do |f| %>
+    <%= hidden_field_tag :page, @page %>
+    <%= hidden_field_tag :page_story, @page_story %>
+    <%= hidden_field_tag :page_comedy, @page_comedy %>
+    <%= hidden_field_tag :page_emotion, @page_emotion %>
+    <%= hidden_field_tag :page_fiction, @page_fiction %>
+    <ul class="title">
+        <% @movies.each do |m| %>
+        <li>
+        <%= link_to movie_path(m.id) do %>
+            <div><%= image_tag image_url(m) %></div>
+            <div>名前：<%= m.title %></div>
+            <%= link_to like_path(m) do %>
+              <i class="fa fa-heart active"><%= movie_like_count(m) %></i>
+            <% end %>
+        <% end %>
+        </li>
+       <% end %>
+    </ul>
+    <%= submit_tag "次へ" %>
+<% end %>
+</section>
+    
+    
+<section class="smoll_title">
+<h2>ストーリーランキング</h2>
+<%= form_tag("/movies/next2", method: :post) do |f| %>
+    <%= hidden_field_tag :page, @page %>
+    <%= hidden_field_tag :page_story, @page_story %>
+    <%= hidden_field_tag :page_comedy, @page_comedy %>
+    <%= hidden_field_tag :page_emotion, @page_emotion %>
+    <%= hidden_field_tag :page_fiction, @page_fiction %>
+        <ul class="title">
+            <% @movies_story.each do |m| %>
+            <li>
+            <%= link_to movie_path(m.id) do %>
+                <div><%= image_tag image_url(m) %></div>
+                <div>名前：<%= m.title %></div>
+            <%= link_to like_path(m) do %>
+              <i class="fa fa-heart active"><%= movie_like_count(m) %></i>
+            <% end %>
+            <% end %>
+            </li>
+           <% end %>
+        </ul>
+    <%= submit_tag "次へ" %>
+<% end %>
+</section>
+
+<section class="smoll_title">
+<h2>笑いランキング</h2>
+<%= form_tag("/movies/next3", method: :post) do |f| %>
+    <%= hidden_field_tag :page, @page %>
+    <%= hidden_field_tag :page_story, @page_story %>
+    <%= hidden_field_tag :page_comedy, @page_comedy %>
+    <%= hidden_field_tag :page_emotion, @page_emotion %>
+    <%= hidden_field_tag :page_fiction, @page_fiction %>
+    <ul class="title">
+        <% @movies_comedy.each do |m| %>
+        <li>
+        <%= link_to movie_path(m.id) do %>
+            <div><%= image_tag image_url(m) %></div>
+            <div>名前：<%= m.title %></div>
+            <%= link_to like_path(m) do %>
+              <i class="fa fa-heart active"><%= movie_like_count(m) %></i>
+            <% end %>
+        <% end %>
+        </li>
+       <% end %>
+    </ul>
+    <%= submit_tag "次へ" %>
+<% end %>
+</section>
+
+<section class="smoll_title">
+<h2>感動ランキング</h2>
+<%= form_tag("/movies/next4", method: :post) do |f| %>
+    <%= hidden_field_tag :page, @page %>
+    <%= hidden_field_tag :page_story, @page_story %>
+    <%= hidden_field_tag :page_comedy, @page_comedy %>
+    <%= hidden_field_tag :page_emotion, @page_emotion %>
+    <%= hidden_field_tag :page_fiction, @page_fiction %>
+    <ul class="title">
+        <% @movies_emotion.each do |m| %>
+        <li>
+        <%= link_to movie_path(m.id) do %>
+            <div><%= image_tag image_url(m) %></div>
+            <div>名前：<%= m.title %></div>
+            <%= link_to like_path(m) do %>
+              <i class="fa fa-heart active"><%= movie_like_count(m) %></i>
+            <% end %>
+        <% end %>
+        </li>
+       <% end %>
+    </ul>
+    <%= submit_tag "次へ" %>
+<% end %>
+</section>
+
+<section class="smoll_title">
+<h2>ノンフィクションランキング</h2>
+<%= form_tag("/movies/next5", method: :post) do |f| %>
+    <%= hidden_field_tag :page, @page %>
+    <%= hidden_field_tag :page_story, @page_story %>
+    <%= hidden_field_tag :page_comedy, @page_comedy %>
+    <%= hidden_field_tag :page_emotion, @page_emotion %>
+    <%= hidden_field_tag :page_fiction, @page_fiction %>
+    <ul class="title">
+        <% @movies_fiction.each do |m| %>
+        <li>
+        <%= link_to movie_path(m.id) do %>
+            <div><%= image_tag image_url(m) %></div>
+            <div>名前：<%= m.title %></div>
+            <%= link_to like_path(m) do %>
+              <i class="fa fa-heart active"><%= movie_like_count(m) %></i>
+            <% end %>
+        <% end %>
+        </li>
+       <% end %>
+    </ul>
+    <%= submit_tag "次へ" %>
+<% end %>
+</section>
+</div>

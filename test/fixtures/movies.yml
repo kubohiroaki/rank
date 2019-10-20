@@ -1,0 +1,65 @@
+# == Schema Information
+#
+# Table name: movies
+#
+#  id              :integer          not null, primary key
+#  title           :string(255)
+#  image1          :string(255)
+#  image2          :string(255)
+#  image3          :string(255)
+#  story_point     :integer
+#  story_comment   :string(255)
+#  graphic_point   :integer
+#  graphic_comment :string(255)
+#  comedy_point    :integer
+#  comedy_comment  :string(255)
+#  excite_point    :integer
+#  excite_comment  :string(255)
+#  emotion_point   :integer
+#  emotion_comment :string(255)
+#  fiction         :boolean
+#  category_id     :integer
+#  description     :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  image1: MyString
+  image2: MyString
+  image3: MyString
+  story_point: 1
+  story_comment: MyString
+  graphic_point: 1
+  graphic_comment: MyString
+  comedy_point: 1
+  comedy_comment: MyString
+  excite_point: 1
+  excite_comment: MyString
+  emotion_point: 1
+  emotion_comment: MyString
+  fiction: false
+  category_id: one
+  description: MyString
+
+two:
+  title: MyString
+  image1: MyString
+  image2: MyString
+  image3: MyString
+  story_point: 1
+  story_comment: MyString
+  graphic_point: 1
+  graphic_comment: MyString
+  comedy_point: 1
+  comedy_comment: MyString
+  excite_point: 1
+  excite_comment: MyString
+  emotion_point: 1
+  emotion_comment: MyString
+  fiction: false
+  category_id: two
+  description: MyString

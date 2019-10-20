@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rank</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
+  </head>
+  <body class="logined clearfix">
+    <div class="wrap">
+      <header class="global_header">
+        <%= link_to movies_path do %>
+        <div>トップページ</div>
+        <% end %>
+      <form>
+        <input type="text" placeholder="検索ワードを入力" name="word" value="">
+      </form>
+      
+
+        
+        <% if user_signed_in? %>
+          <%= link_to new_movie_path do %>
+          <div>映画追加</div>
+          <% end %>
+          <!-- サインアウト -->
+          <%= link_to sign_out_path do %>
+            <i class="fa fa-sign-out">サインアウト</i>
+          <% end %>
+        <% end %>
+        
+
+        
+    </header>
+  </div>
+      <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type %>"><%= message %></div>
+      <% end %>
+    <%= yield %>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script>
+        window.setTimeout(function() {
+          $(".alert").slideUp();
+        }, 3000);
+      </script>
+  </body>
+</html>
