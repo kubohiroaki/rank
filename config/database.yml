@@ -27,4 +27,6 @@ test:
  
 production:
   <<: *default
-  database: camp4
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
