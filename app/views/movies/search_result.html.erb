@@ -1,11 +1,9 @@
-<%= debug params %>
-
 <h1 class="big_title">映画ランキング</h1>
 <%= render partial: 'movies/search' %>
+<%= render partial: 'movies/search2' %>
 <h2>絞り込みランキング</h2>
     <ul class="title">
         <% @movies.each do |m| %>
-        <%= m.point %>
         <li>
         <%= link_to movie_path(m.id) do %>
             <%= m.point %>
