@@ -8,8 +8,9 @@ class ContactsController < ApplicationController
     if @contact.save
       ContactMailer.contact_mail(@contact).deliver
       flash[:success] = 'お問い合わせを受け付けました'
-      redirect_to root_path
+      redirect_to movies_path and return
     else
+      flash.now[:danger] = 'お問い合わせを送信できませんでした'
       render :new
     end
   end

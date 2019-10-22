@@ -38,10 +38,28 @@ class UsersController < ApplicationController
         redirect_to sign_in_path and return
     end
     
+    def show
+        @user = User.find_by(email: "shokatsuryou3@yahoo.co.jp")
+    end
+    
+    def edit
+        @user = User.find(current_user.id)
+    end
+    
+    def update
+      @user = User.find(current_user.id)
+      if @user.update_attributes(user_params)
+        flash[:success] = "プロフィール更新成功"
+        redirect_to profile_show_path and return        
+      else
+        flash[:danger] = "プロフィール更新失敗"
+        redirect_to profile_edit_path and return
+      end
+    end
     
     private
     def user_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation, :image1, :image2, :image3)
+        params.require(:user).permit(:description, :name, :email, :password, :password_confirmation, :image, :image1, :image2, :image3)
     end
 
     

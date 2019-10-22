@@ -1,0 +1,23 @@
+<div class="profile_edit container">
+  <h1>プロフィール更新ページ</h1>
+  <%= form_for @user, url: profile_edit_path, method: :post do |f| %>
+    <div class="field">
+
+    <div class="file_wrap">プロフィール画像
+      <%= f.file_field :image %>
+    </div>
+    </div>
+    <div class="field">
+      <%= f.label :name, "名前" %>
+      <%= f.text_field :name, placeholder: "名前を入力して下さい。" %>
+    </div>
+    <div class="field">
+      <%= f.label :description, "プロフィール" %>
+      <%= f.text_field :description, placeholder: "プロフィールを入力して下さい。" %>
+    </div>
+
+    <div class="button_wrap">
+      <input type="submit" value="保存する" class="button">
+    </div>
+  <% end %>
+</div>

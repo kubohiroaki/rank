@@ -21,10 +21,15 @@
         
         <div>フィクション</div>
          <%= select_tag :fiction, options_for_select([['フィクション','true'],['ノンフィクション','false']]), include_blank: true %>
-
+         
+        <%= link_to maxim_path do %>
+        <div>名言集</div>
+        <% end %>
         
+        <%= link_to love_path do %>
+        <div>いいね数ランキング</div>
+        <% end %>
 
-        
         <div class="btn_wrap">
             <%= submit_tag "送信" %>
         </div>

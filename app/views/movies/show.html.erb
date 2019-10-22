@@ -1,5 +1,6 @@
 <div class="top container">
 　<%= render partial: 'movies/search' %>
+　<%= render partial: 'movies/search2' %>
   <h1>タイトル：<%= @movie.title %></h1>
   <% if @movie.fiction %>
   <div>フィクション：フィクション</div>
@@ -15,6 +16,10 @@
   <ul class="posts">
     <li>
           <span class="caption">総合評価：<%= @movie.emotion_point %>点</span>
+          <div><%= @movie.emotion_comment %></div>
+    </li>
+    <li>
+          <span class="caption">名言</span>
           <div><%= @movie.emotion_comment %></div>
     </li>
     <li>

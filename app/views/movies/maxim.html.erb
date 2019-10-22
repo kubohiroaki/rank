@@ -1,0 +1,18 @@
+<h1 class="big_title">名言集</h1>
+    <%= render partial: 'movies/search' %>
+    <%= render partial: 'movies/search2' %>
+<div class="">
+    
+    <ul class="">
+        <% @movies.each do |m| %>
+        <li>
+        <%= link_to movie_path(m.id) do %>
+            <div>名前：<%= m.title %></div>
+            <div>名言：<%= m.maxim %></div>
+            <%= link_to like_path(m) do %>
+              <i class="fa fa-heart active"><%= movie_like_count(m) %></i>
+            <% end %>
+        <% end %>
+        </li>
+       <% end %>
+    </ul>

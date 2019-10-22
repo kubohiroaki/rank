@@ -1,0 +1,16 @@
+<!-- ユーザー名 -->
+<%= @user.name %>
+
+<!--　画像 -->
+<%= image_tag @user.image_url %>
+
+<!-- 自己紹介 -->
+<%= @user.description %>
+ 
+<div class="actions">
+  <% if user_signed_in? %>
+    <%= link_to profile_edit_path do %>
+      <div>プロフィール編集</div>
+    <% end %>
+  <% end %>
+</div>

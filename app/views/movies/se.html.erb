@@ -1,0 +1,13 @@
+    <ul class="title">
+        <% @movies.each do |m| %>
+        <li>
+        <%= link_to movie_path(m.id) do %>
+            <div><%= image_tag image_url(m) %></div>
+            <div>名前：<%= m.title %></div>
+            <%= link_to like_path(m) do %>
+              <i class="fa fa-heart active"><%= movie_like_count(m) %></i>
+            <% end %>
+        <% end %>
+        </li>
+       <% end %>
+    </ul>

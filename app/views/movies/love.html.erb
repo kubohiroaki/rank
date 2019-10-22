@@ -1,0 +1,16 @@
+<h1 class="big_title">いいねランキング</h1>
+    <%= render partial: 'movies/search' %>
+    <%= render partial: 'movies/search2' %>
+<div class="">
+    
+    <ul class="">
+        <% @movies.each do |m| %>
+        <li>
+        <%= link_to movie_path(m.id) do %>
+            <div><%= image_tag image_url(m) %></div>
+            <div>名前：<%= m.title %></div>
+            <div>いいね数：<%= movie_like_count(m) %></div>
+        <% end %>
+        </li>
+       <% end %>
+    </ul>

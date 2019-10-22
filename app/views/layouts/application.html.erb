@@ -12,14 +12,17 @@
     <div class="wrap">
       <header class="global_header">
         <%= link_to movies_path do %>
-        <div>トップページ</div>
+          <div>トップページ</div>
         <% end %>
-      <form>
-        <input type="text" placeholder="検索ワードを入力" name="word" value="">
-      </form>
-      
-
-        
+        <%= form_tag("/se", method: "get") do %>
+          <%= text_field_tag(:word) %>
+        <% end %>
+        <%= link_to new_contact_path do %>
+          <div>問い合わせ</div>
+        <% end %>
+        <%= link_to profile_show_path do %>
+          <div>管理人自己紹介</div>
+        <% end %>
         <% if user_signed_in? %>
           <%= link_to new_movie_path do %>
           <div>映画追加</div>
@@ -29,14 +32,11 @@
             <i class="fa fa-sign-out">サインアウト</i>
           <% end %>
         <% end %>
-        
-
-        
-    </header>
-  </div>
-      <% flash.each do |type, message| %>
+      </header>
+    </div>
+    <% flash.each do |type, message| %>
       <div class="alert alert-<%= type %>"><%= message %></div>
-      <% end %>
+    <% end %>
     <%= yield %>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script>

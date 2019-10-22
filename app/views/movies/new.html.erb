@@ -17,6 +17,12 @@
         <%= f.file_field :image3 %>
       </div>
       <div class="textarea_wrap">
+        <%= f.text_area :description, placeholder: "説明文" %>
+      </div>
+      <div class="textarea_wrap">
+        <%= f.text_area :maxim, placeholder: "名言" %>
+      </div>
+      <div class="textarea_wrap">
         <%= f.text_field :story_point, placeholder: "ストーリー" %>
         <%= f.text_field :graphic_point, placeholder: "映像" %>
         <%= f.text_field :comedy_point , placeholder: "笑い" %>

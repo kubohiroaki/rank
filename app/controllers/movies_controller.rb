@@ -6,7 +6,24 @@ class MoviesController < ApplicationController
       MovieLike.create(movie_id: @movie.id)
       redirect_to movies_path and return
     end
+    
+    def love
+      @movielike_ids = MovieLike.group(:movie_id).order("COUNT(movie_id) desc").pluck(:movie_id)
+      @movies = Movie.where(id: @movielike_ids).order_as_specified(id: @movielike_ids)
+    end
+    
+    def maxim
+      @movies = Movie.where.not(maxim: nil)
+    end
 
+    def se
+      if params[:word].present?
+        @movies = Movie.where("title like ?", "%#{params[:word]}%").order("id desc")
+      else
+        flash.now[:danger] = "映画は見つかりませんでした"
+        render "se"
+      end
+    end
 
 
     def index
@@ -20,76 +37,76 @@ class MoviesController < ApplicationController
         @movies_comedy = Movie.limit(5).order('comedy_point desc')
         @movies_emotion = Movie.limit(5).order('emotion_point desc')
         @movies_fiction = Movie.total_point.where(fiction: false).limit(5)
-        
+        @movie_count = Movie.all.count/5
     end
     
     def next
+        set_pege_param
         @page = params[:page].to_i + 1
-        @page_story = params[:page_story].to_i
-        @page_comedy = params[:page_comedy].to_i
-        @page_emotion = params[:page_emotion].to_i
-        @page_fiction = params[:page_fiction].to_i
-        @movies = Movie.total_point.limit(5).offset(5 * @page)
-        @movies_story = Movie.limit(5).offset(5 * @page_story).order('story_point desc')
-        @movies_comedy = Movie.limit(5).offset(5 * @page_comedy).order('comedy_point desc')
-        @movies_emotion = Movie.limit(5).offset(5 * @page_emotion).order('emotion_point desc')
-        @movies_fiction = Movie.total_point.where(fiction: false).limit(5).offset(5 * @page_fiction)
+        # @page_story = params[:page_story].to_i
+        # @page_comedy = params[:page_comedy].to_i
+        # @page_emotion = params[:page_emotion].to_i
+        # @page_fiction = params[:page_fiction].to_i
+        search_movie
+        render "index"
+    end
+    
+    def prev
+        set_pege_param
+        @page = params[:page].to_i - 1
+        search_movie
         render "index"
     end
     
     def next_story
-        @page = params[:page].to_i 
+        set_pege_param
         @page_story = params[:page_story].to_i + 1
-        @page_comedy = params[:page_comedy].to_i
-        @page_emotion = params[:page_emotion].to_i
-        @page_fiction = params[:page_fiction].to_i
-        @movies = Movie.total_point.limit(5).offset(5 * @page)
-        @movies_story = Movie.limit(5).offset(5 * @page_story).order('story_point desc')
-        @movies_comedy = Movie.limit(5).offset(5 * @page_comedy).order('comedy_point desc')
-        @movies_emotion = Movie.limit(5).offset(5 * @page_emotion).order('emotion_point desc')
-        @movies_fiction = Movie.total_point.where(fiction: false).limit(5).offset(5 * @page_fiction)
+        search_movie
+        render "index"
+    end
+    def prev_story
+        set_pege_param
+        @page_story = params[:page_story].to_i - 1
+        search_movie
         render "index"
     end
     
     def next_comedy
-        @page = params[:page].to_i 
-        @page_story = params[:page_story].to_i
+        set_pege_param
         @page_comedy = params[:page_comedy].to_i + 1
-        @page_emotion = params[:page_emotion].to_i
-        @page_fiction = params[:page_fiction].to_i
-        @movies = Movie.total_point.limit(5).offset(5 * @page)
-        @movies_story = Movie.limit(5).offset(5 * @page_story).order('story_point desc')
-        @movies_comedy = Movie.limit(5).offset(5 * @page_comedy).order('comedy_point desc')
-        @movies_emotion = Movie.limit(5).offset(5 * @page_emotion).order('emotion_point desc')
-        @movies_fiction = Movie.total_point.where(fiction: false).limit(5).offset(5 * @page_fiction)
+        search_movie
+        render "index"
+    end
+    def prev_comedy
+        set_pege_param
+        @page_comedy = params[:page_comedy].to_i - 1
+        search_movie
         render "index"
     end
     
     def next_emotion
-        @page = params[:page].to_i 
-        @page_story = params[:page_story].to_i
-        @page_comedy = params[:page_comedy].to_i
+        set_pege_param
         @page_emotion = params[:page_emotion].to_i + 1
-        @page_fiction = params[:page_fiction].to_i
-        @movies = Movie.total_point.limit(5).offset(5 * @page)
-        @movies_story = Movie.limit(5).offset(5 * @page_story).order('story_point desc')
-        @movies_comedy = Movie.limit(5).offset(5 * @page_comedy).order('comedy_point desc')
-        @movies_emotion = Movie.limit(5).offset(5 * @page_emotion).order('emotion_point desc')
-        @movies_fiction = Movie.total_point.where(fiction: false).limit(5).offset(5 * @page_fiction)
+        search_movie
         render "index"
     end
+    def prev_emotion
+        set_pege_param
+        @page_emotion = params[:page_emotion].to_i - 1
+        search_movie
+        render "index"
+    end   
     
     def next_fiction
-        @page = params[:page].to_i 
-        @page_story = params[:page_story].to_i
-        @page_comedy = params[:page_comedy].to_i
-        @page_emotion = params[:page_emotion].to_i
+        set_pege_param
         @page_fiction = params[:page_fiction].to_i + 1
-        @movies = Movie.total_point.limit(5).offset(5 * @page)
-        @movies_story = Movie.limit(5).offset(5 * @page_story).order('story_point desc')
-        @movies_comedy = Movie.limit(5).offset(5 * @page_comedy).order('comedy_point desc')
-        @movies_emotion = Movie.limit(5).offset(5 * @page_emotion).order('emotion_point desc')
-        @movies_fiction = Movie.total_point.where(fiction: false).limit(5).offset(5 * @page_fiction)
+        search_movie
+        render "index"
+    end
+    def prev_fiction
+        set_pege_param
+        @page_fiction = params[:page_fiction].to_i - 1
+        search_movie
         render "index"
     end
     
@@ -132,8 +149,13 @@ class MoviesController < ApplicationController
     
     
     def show
+      input = params[:id]
+      unless (/^[+-]?[0-9]+$/ =~ input)
+        redirect_to movies_path and return
+      end
       @movie = Movie.find(params[:id])
     end
+     
     
     
     def new
@@ -197,10 +219,24 @@ class MoviesController < ApplicationController
       end
     end
     
+    def search_movie
+      @movies = Movie.total_point.limit(5).offset(5 * @page)
+      @movies_story = Movie.limit(5).offset(5 * @page_story).order('story_point desc')
+      @movies_comedy = Movie.limit(5).offset(5 * @page_comedy).order('comedy_point desc')
+      @movies_emotion = Movie.limit(5).offset(5 * @page_emotion).order('emotion_point desc')
+      @movies_fiction = Movie.total_point.where(fiction: false).limit(5).offset(5 * @page_fiction)
+    end
     
+    def set_pege_param
+      @page = params[:page].to_i 
+      @page_story = params[:page_story].to_i
+      @page_comedy = params[:page_comedy].to_i
+      @page_emotion = params[:page_emotion].to_i
+      @page_fiction = params[:page_fiction].to_i
+    end
     
     def movie_params
-      params.require(:movie).permit(:title, :story_point, :story_comment, :graphic_point, :graphic_comment, :comedy_point, :comedy_comment, :excite_point, :excite_comment, :emotion_point, :emotion_comment, :fiction, :description, :category_id, :image1, :image2, :image3)
+      params.require(:movie).permit(:maxim, :title, :story_point, :story_comment, :graphic_point, :graphic_comment, :comedy_point, :comedy_comment, :excite_point, :excite_comment, :emotion_point, :emotion_comment, :fiction, :description, :category_id, :image1, :image2, :image3)
     end
   
 end

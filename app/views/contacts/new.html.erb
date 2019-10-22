@@ -1,5 +1,9 @@
 <%= form_for @contact do |f| %>
-
+        <% if @contact.errors.present? %>
+          <% @contact.errors.full_messages.each do |msg| %>
+            <p class="e_m"><%= msg %></p>
+          <% end %>
+        <% end %>
   <div class="form-group">
     <%= f.label :email, '返信先メールアドレス' %>
     <%= f.text_field :email, class: 'form-control' %>

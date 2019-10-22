@@ -25,6 +25,7 @@
 #
 
 class Movie < ApplicationRecord
+  extend OrderAsSpecified
   belongs_to :category
   has_many :movie_likes, dependent: :destroy
     mount_uploader :image1, ImageUploader

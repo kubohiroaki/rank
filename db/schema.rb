@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191021082521) do
+ActiveRecord::Schema.define(version: 20191022014448) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20191021082521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "total_point"
+    t.string "maxim"
     t.index ["category_id"], name: "index_movies_on_category_id"
   end
 
